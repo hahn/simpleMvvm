@@ -22,4 +22,10 @@ class UserViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHo
             tvUrl.text = data.url.orEmpty()
         }
     }
+
+    fun itemClick(click: (position: Int) -> Unit) {
+        binding.root.setOnClickListener {
+            click.invoke(adapterPosition)
+        }
+    }
 }

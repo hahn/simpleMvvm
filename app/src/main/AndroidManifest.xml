@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleMvvm">
+        <activity android:name=".feature.detail.ui.DetailActivity"></activity>
         <activity android:name=".feature.home.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

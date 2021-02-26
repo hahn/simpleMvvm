@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simplemvvm.base.BaseActivity
 import com.example.simplemvvm.base.BaseAdapter
 import com.example.simplemvvm.databinding.ActivityMainBinding
+import com.example.simplemvvm.feature.detail.ui.DetailActivity
 import com.example.simplemvvm.feature.home.di.MyHomeInjector
 import com.example.simplemvvm.feature.home.model.GithubUser
 import com.example.simplemvvm.utils.hideView
@@ -51,6 +52,9 @@ class MainActivity :BaseActivity<ActivityMainBinding, MainViewModel>() {
             UserViewHolder.inflate(parent)
         }, { viewHolder, _, item ->
             viewHolder.bind(item)
+            viewHolder.itemClick {
+                DetailActivity.startWithData(this, item)
+            }
         })
         binding.rvUser.layoutManager = LinearLayoutManager(this)
         binding.rvUser.adapter = adapter
