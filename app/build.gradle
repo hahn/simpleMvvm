@@ -1,0 +1,96 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+
+}
+
+apply from: 'dependencies.gradle'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.example.simplemvvm"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "HOST_BASE_URL", '"https://api.github.com"')
+        }
+        release {
+            minifyEnabled false
+            buildConfigField("String", "HOST_BASE_URL", '"https://api.github.com"')
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation libraries.multidex
+
+    implementation libraries.timber
+    implementation libraries.gson
+    implementation libraries.okhttp3
+    implementation libraries.okhttp3Logging
+    implementation libraries.glide
+    implementation libraries.lifecycleRuntime
+
+    implementation libraries.kotlinCore
+    implementation libraries.rxjava
+    implementation libraries.retrofit2
+    implementation libraries.retrofit2Gson
+    implementation libraries.retrofitAdapter
+    implementation libraries.rxAndroid
+
+    implementation libraries.dagger
+    implementation libraries.kotlinCore
+    implementation libraries.javaxInject
+    compileOnly libraries.javaxAnnotation
+
+    implementation supportDependencies.constraintLayout
+    implementation supportDependencies.appCompat
+    implementation supportDependencies.design
+    implementation supportDependencies.support
+    implementation supportDependencies.recyclerView
+
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+
+    testImplementation testLibraries.junit
+    testImplementation testLibraries.junitRunner
+    testImplementation testLibraries.mockitoCore
+    testImplementation testLibraries.mockitoKotlin
+    testImplementation testLibraries.mockitoInline
+    testImplementation testLibraries.coreTesting
+    testImplementation testSupportDependencies.core
+    testImplementation testSupportDependencies.extRunner
+    testImplementation testSupportDependencies.roboelectric
+
+    androidTestImplementation testLibraries.mockitoAndroid
+    androidTestImplementation testSupportDependencies.espressoCore
+    androidTestImplementation testSupportDependencies.extRunner
+
+    kapt libraries.daggerCompiler
+    kapt libraries.daggerAndroidCompiler
+
+}
